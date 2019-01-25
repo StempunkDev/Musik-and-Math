@@ -14,17 +14,23 @@ namespace Midi_Musik_Projecct.Data
             FileStream fs = File.OpenRead(path);
             BinaryReader br = new BinaryReader(fs);
             String s;
+            byte[] reversed;
+            byte[] fbyte;
             try
             {
-                byte[] bytes = new byte[fs.Length];
-                byte[] fbyte = br.ReadBytes(4);
-                s = System.Text.ASCIIEncoding.ASCII.GetString(fbyte);
+                fbyte = br.ReadBytes(4);
+                s = bytetoASCII(fbyte);
                 Console.WriteLine(s);
-
+                fbyte = br.ReadBytes(4);
+                reversed = fbyte.Reverse().ToArray();
+                s = BitConverter.ToInt32(reversed, 0).ToString();
+                Console.WriteLine(s);
+                
 
 
 
                 br.Close();
+                br.Dispose();
                 fs.Close();
                 return fbyte;
             }
@@ -33,6 +39,12 @@ namespace Midi_Musik_Projecct.Data
                 br.Close();
                 fs.Close();
             }
+        }
+
+        private static string bytetoASCII(byte[] b)
+        {
+            return ASCIIEncoding.ASCII.GetString(b);
+
         }
     }
 }
