@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.Btn_openData = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
-            // button1
+            // Btn_openData
             // 
-            this.button1.Location = new System.Drawing.Point(986, 420);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Datei Öffnen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Btn_openData.Location = new System.Drawing.Point(986, 420);
+            this.Btn_openData.Name = "Btn_openData";
+            this.Btn_openData.Size = new System.Drawing.Size(110, 23);
+            this.Btn_openData.TabIndex = 0;
+            this.Btn_openData.Text = "Datei Öffnen";
+            this.Btn_openData.UseVisualStyleBackColor = true;
+            this.Btn_openData.Click += new System.EventHandler(this.button1_Click);
             // 
             // openFileDialog1
             // 
@@ -51,7 +51,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1108, 455);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Btn_openData);
             this.Name = "Form1";
             this.Text = "Midi Reader";
             this.ResumeLayout(false);
@@ -60,7 +60,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btn_openData;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
