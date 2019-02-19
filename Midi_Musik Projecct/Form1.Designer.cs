@@ -1,4 +1,4 @@
-﻿namespace Midi_Musik_Projecct
+﻿namespace Midi_Musik_Projekt
 {
     partial class Form1
     {

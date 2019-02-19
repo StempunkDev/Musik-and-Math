@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Midi_Musik_Projecct.Data;
+using Midi_Musik_Projekt.Data;
 
-namespace Midi_Musik_Projecct
+namespace Midi_Musik_Projekt
 {
     public partial class Form1 : Form
     {

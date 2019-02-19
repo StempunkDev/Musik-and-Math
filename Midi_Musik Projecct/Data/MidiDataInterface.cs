@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
-namespace Midi_Musik_Projecct.Data
+namespace Midi_Musik_Projekt.Data
 {
     public static class MidiDataInterface
     {
@@ -22,9 +22,9 @@ namespace Midi_Musik_Projecct.Data
             Note NB_1 = null;
             int NCount = 0;
             List<float> result = new List<float>();
-            List<Note> Accord1 = new List<Note>();
-            List<Note> Accord2 = new List<Note>();
-            List<Note> AccordBuffer = new List<Note>();
+            List<Note> Akkord1 = new List<Note>();
+            List<Note> Akkord2 = new List<Note>();
+            List<Note> AkkordBuffer = new List<Note>();
             string AnalyseFolder = Config.Data.AnalysePath;
             string AnalysePath = AnalyseFolder + @"\";
             // Try Block für die Vorbeugung von Fehlern.
@@ -46,37 +46,37 @@ namespace Midi_Musik_Projecct.Data
                     NCount = notes.Count();
                     foreach (Note N in notes)
                     {
-                        if (NB_1 != null && !Accord2.Contains(NB_1)) Accord2.Add(NB_1);
+                        if (NB_1 != null && !Akkord2.Contains(NB_1)) Akkord2.Add(NB_1);
                         if (N.Time == time)
                         {
-                            Accord2.Add(N);
+                            Akkord2.Add(N);
                         }
                         else if(time != N.Time)
                         {
                             // Buffering
-                            addBuffer(Accord2, AccordBuffer);
-                            AccordBuffer = CalculateBuffer(AccordBuffer,N);
-                            foreach (Note no in AccordBuffer) { if (!Accord2.Contains(no)) Accord2.Add(no); }
+                            addBuffer(Akkord2, AkkordBuffer);
+                            AkkordBuffer = CalculateBuffer(AkkordBuffer,N);
+                            foreach (Note no in AkkordBuffer) { if (!Akkord2.Contains(no)) Akkord2.Add(no); }
 
-                            if (Accord2.First().Time < N.Time && Accord1.Count > 0)
+                            if (Akkord2.First().Time < N.Time && Akkord1.Count > 0)
                             {
 
-                                result.Add(NoteConverter.CNote(Accord1, Accord2));
+                                result.Add(NoteConverter.CNote(Akkord1, Akkord2));
                             }
                             //Shifting
-                            Accord1.Clear();
-                            foreach (Note no in Accord2) Accord1.Add(no);
-                            Accord2.Clear();
+                            Akkord1.Clear();
+                            foreach (Note no in Akkord2) Akkord1.Add(no);
+                            Akkord2.Clear();
                             NB_1 = N;
                             time = N.Time;
 
                         }
                      }
-                    if (NB_1 != null && !Accord2.Contains(NB_1)) Accord2.Add(NB_1);
-                    result.Add(NoteConverter.CNote(Accord1, Accord2));
+                    if (NB_1 != null && !Akkord2.Contains(NB_1)) Akkord2.Add(NB_1);
+                    result.Add(NoteConverter.CNote(Akkord1, Akkord2));
                     ValidateAnalysisPath(AnalyseFolder);
                     
-                    string json = JsonConvert.SerializeObject(result);
+                    string json = JsonConvert.SerializeObject(result,Formatting.Indented);
                     File.WriteAllText(AnalysePath + name + ".json", json);
 
                 }
@@ -84,9 +84,7 @@ namespace Midi_Musik_Projecct.Data
                 {
                     MessageBox.Show(text: "Die ausgewählte Datei ist keine Midi Datei", caption: "Fehler bei der Dateneinlesung",icon:MessageBoxIcon.Error,buttons: MessageBoxButtons.OK);
                 }
-                br.Close();
-                br.Dispose();
-                fs.Close();
+
                 
             }
             finally

@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
-using Midi_Musik_Projecct.Data;
+using Midi_Musik_Projekt.Data;
 
-namespace Midi_Musik_Projecct
+namespace Midi_Musik_Projekt
 {
     class NoteConverter
     {
@@ -24,11 +24,11 @@ namespace Midi_Musik_Projecct
 
         public static float CNote(List<Note> NL1, List<Note> NL2)
         {
-            float Acc1 = 0;
-            float Acc2 = 0;
-            foreach (Note N in NL1) Acc1 += Conv[N.ToString()];
-            foreach (Note N in NL2) Acc2 += Conv[N.ToString()];
-            return Acc2 / Acc1;
+            float Akk1 = 0;
+            float Akk2 = 0;
+            foreach (Note N in NL1) Akk1 += Conv[N.ToString()];
+            foreach (Note N in NL2) Akk2 += Conv[N.ToString()];
+            return Akk2 / Akk1;
         }
 
 
