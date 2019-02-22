@@ -60,7 +60,6 @@ namespace Midi_Musik_Projekt.Data
 
                             if (Akkord2.First().Time < N.Time && Akkord1.Count > 0)
                             {
-
                                 result.Add(NoteConverter.CNote(Akkord1, Akkord2));
                             }
                             //Shifting
@@ -116,24 +115,20 @@ namespace Midi_Musik_Projekt.Data
             return result;
         }
 
-        private static long FindSmallest(List<Note> list)
-        {
-            long L_small = 100000;
-            foreach (Note no in list)
-            {
-                if (no.Length < L_small)
-                    L_small = no.Length;
-            }
-            return L_small;
-        }
+        //private static long FindSmallest(List<Note> list)
+        //{
+        //    long L_small = 100000;
+        //    foreach (Note no in list)
+        //    {
+        //        if (no.Length < L_small)
+        //            L_small = no.Length;
+        //    }
+        //    return L_small;
+        //}
 
         private static void addBuffer(List<Note> list, List<Note> buffer)
         {
-            long L_small = FindSmallest(list);
-            foreach(Note no in list)
-            {
-                if (no.Length != L_small) buffer.Add(no);
-            }
+            foreach(Note no in list) buffer.Add(no);
         }
 
         private static string bytetoASCII(byte[] b)
